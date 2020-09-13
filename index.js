@@ -13,5 +13,13 @@ app.get('/', (req, res) => {
 })
 
 
+
+app.post('/convert', function (req, res){
+
+var plaintxt= req.body.plaintxt;
+var convertit = req.body.convertedText;
+
+
+})
 let port_number = process.env.PORT || 3000;
 server=app.listen(port_number, () => console.log("Server is Running on PORT "+ port_number));
