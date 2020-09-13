@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const  { body, validationnResult} = require('express-validator')
+const  { body, validationResult} = require('express-validator')
 app.use(express.urlencoded({extended:false}))
 
 //set the template engine ejs
