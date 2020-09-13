@@ -19,6 +19,8 @@ app.post('/convert', function (req, res){
 var plaintxt= req.body.plaintxt;
 var convertit = req.body.convertedText;
 
+res.send(`<script>alert('Clicked Successful! Click Ok To open git repo.'); {window.location.href = 'https://github.com/t4nny/B1nCrypti0n';}</script>`)
+
 
 })
 let port_number = process.env.PORT || 3000;
