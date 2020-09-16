@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const { body, validationResult } = require("express-validator");
 const bin = require("binary-code");
-app.use(express.urlencoded({ extended: false }));
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -13,39 +12,22 @@ app.set("view engine", "ejs");
 app.get("/", urlencodedParser, (req, res) => {
   var convertit = req.body.convertedText;
   var againPlainText;
-  res.render("index", { convertit: convertit, againPlain: againPlainText });
+  res.render("index", {
+    convertit: convertit,
+    againPlain: againPlainText,
+    plaintext: againPlainText,
+  });
 });
-
-//app.locals.data1 = "Hello WOrld";
 
 app.post("/convert", urlencodedParser, function (req, res) {
   var plaintxt = req.body.plaintext;
 
-  //res.send(`<script>alert('Clicked Successful! Click Ok To open git repo.'); {window.location.href = 'https://github.com/t4nny/B1nCrypti0n';}</script>`)
-
-  // for(var i=0; i<plaintxt.length; i++){
-  //     res.send(plaintxt.charAt(i))
-  // }
-
-  //res.send(plaintxt.split(''))
-
   var arr = new Array(bin.binary(plaintxt));
-  //res.send(bin.binary(plaintxt).charAt(8).split('').join(' '))
 
   for (var i = 0; i < arr.length; i++) {
     var io = arr[i];
     console.log(io + " ");
   }
-
-  // arr.forEach(element => {
-  //     var io = arr[element]
-  //     console.log(io)
-  // });
-  //res.send(bin.text('0101010001100001011011100110111001111001'))
-
-  // for (var i=0; i<arr.length;i++) {
-  //     res.send(arr[i] + "<br>")
-  //     }
 
   var tmp = bin.binary(plaintxt).split("");
   console.log(tmp);
@@ -79,7 +61,11 @@ app.post("/convert", urlencodedParser, function (req, res) {
   var finaldata = emparr2.join(" ");
   againPlainText = bin.text(finaldata);
   console.log(againPlainText);
-  res.render("index", { convertit: convertit, againPlain: againPlainText });
+  res.render("index", {
+    convertit: convertit,
+    againPlain: againPlainText,
+    plaintext: againPlainText,
+  });
 });
 
 let port_number = process.env.PORT || 3001;
