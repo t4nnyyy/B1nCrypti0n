@@ -1,31 +1,264 @@
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="jquery.min.js.download"></script>
+    <script>
+      function selConvertedText() {
+        var copyText = document.getElementById("txtbinary");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        //alert("Text Copied");
+      }
+
+      function frm1clrPlaintext() {
+        document.getElementById("frm1txtPlain").value = "";
+      }
+
+      function frm1selConvertedtext() {
+        var copyText = document.getElementById("frm1txtConverted");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        //alert("Text Copied");
+      }
+
+      function frm2clrPlaintext() {
+        document.getElementById("frm2txtConverted").value = "";
+      }
+
+      function frm2selConvertedtext() {
+        var copyText = document.getElementById("frm2txtPlain");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        //alert("Text Copied");
+      }
+    </script>
+
+    <style>
+      @-webkit-keyframes downarrow {
+        0% {
+          -webkit-transform: translateY(0);
+          opacity: 0.4;
+        }
+        100% {
+          -webkit-transform: translateY(0.4em);
+          opacity: 0.9;
+        }
+      }
+
+      input[type="submit"] {
+        position: absolute;
+        right: 220px;
+        width: 140px;
+        height: 50px;
+        border: 3px solid green;
+      }
+
+      .arrow {
+        border-color: transparent;
+        border-style: solid;
+        border-width: 0 2em;
+        display: block;
+        height: 0;
+        margin: auto;
+        opacity: 0.4;
+        text-indent: -9999px;
+        transform-origin: 50% 50%;
+        width: 0;
+      }
+
+      .down {
+        -webkit-animation: downarrow 0.6s infinite alternate ease-in-out;
+        border-top: 2em solid darkorchid;
+      }
+    </style>
+
     <title>B1nCrypti0n</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src="../index.js"></script>
-</head>
-<body bgcolor="black">
-   <center> <h1 style="color: green;">Welcome To B1nCrypti0n</h1></center>
-    <marquee behaviour="alternate"><h3 style="color: green;"">Site is Under Construction</h3></marquee>
-    <center> <h1>Project By <font color="green">Tanny</font> && <font color="green">Aditya</font> </h1></center>
+  </head>
 
-  
-<form action="/convert" method="POST">
-<center>
-    <textarea rows="6" cols="80" name="plaintext"><%= plaintext %></textarea>
-    <br><br><br>
-    <textarea rows="6" cols="80" name="convertedText"><%= convertit %></textarea>
-    <br><br><br>
-    <font color="lime"><h1><p><%= againPlain %></p></h1></font>
-    <br><br><br>
-    <input type="submit" text="convert">
+  <body style="background-color: black">
+    <form name="frm1" action="/Encrypt" method="POST" autocomplete="off">
+      <section>
+        <div class="container-fluid" style="color: white">
+          <h1
+            class="text-center mb-5 text-uppercase"
+            style="padding-top: 110px"
+          >
+            Welcome To B1nCrypti0n
+          </h1>
 
-</center>
-</form>
+          <div class="container">
+            <h3 class="text-center mb-5 text-uppercase">Encrypt Here</h3>
+            <a class="arrow down">Down</a>
+            <br />
+          </div>
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="margin-bottom: 30px">
+              <textarea
+                style="background-color: black; color: lime"
+                type="text"
+                rows="6"
+                cols="80"
+                id="frm1txtPlain"
+                name="frm1txtPlain"
+                class="form-control"
+                placeholder="Write Plain Text Here"
+              >
+<%= plaintext %></textarea
+              >
+              <br />
+              <center>
+                <button id="txtplainclear" type="submit" class="btn btn-dark">
+                  Convert
+                </button>
 
+                <button
+                  id="txtplainclear"
+                  type="button"
+                  onclick="frm1clrPlaintext()"
+                  class="btn btn-dark"
+                >
+                  Clear
+                </button>
+              </center>
 
+              <br /><br /><br />
+              <textarea
+                style="background-color: black; color: lime"
+                type="text"
+                rows="6"
+                cols="80"
+                id="frm1txtConverted"
+                name="frm1txtConverted"
+                class="form-control"
+                onkeyup="textToBin()"
+                placeholder="B1nCrypted Text"
+              >
+<%= convertit %></textarea
+              >
 
-</body>
+              <br />
+              <center>
+                <button
+                  id="txtplainclear"
+                  type="button"
+                  onclick="frm1selConvertedtext()"
+                  class="btn btn-dark"
+                >
+                  Copy
+                </button>
+              </center>
+
+              <select class="form-control" id="charsel" hidden="true">
+                <option value="">ASCII</option>
+                <option value="utf-8" selected="">ASCII/UTF-8</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+
+    <form name="frm2" action="/Decrypt" method="POST" autocomplete="off">
+      <section>
+        <div class="container-fluid" style="color: white">
+          <div class="container">
+            <h3 class="text-center mb-5 text-uppercase">Decrypt Here</h3>
+            <a class="arrow down">Down</a>
+            <br />
+          </div>
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="margin-bottom: 30px">
+              <textarea
+                style="background-color: black; color: lime"
+                type="text"
+                rows="6"
+                cols="80"
+                id="frm2txtConverted"
+                name="frm2txtConverted"
+                class="form-control"
+                placeholder="Enter B1nCrypted Text Here"
+              >
+<%= newconvertit %></textarea
+              >
+              <br />
+              <center>
+                <button id="txtplainclear" type="submit" class="btn btn-dark">
+                  Convert
+                </button>
+
+                <button
+                  id="txtplainclear"
+                  type="button"
+                  onclick="frm2clrPlaintext()"
+                  class="btn btn-dark"
+                >
+                  Clear
+                </button>
+              </center>
+
+              <br /><br /><br />
+              <textarea
+                style="background-color: black; color: lime"
+                type="text"
+                rows="6"
+                cols="80"
+                id="frm2txtPlain"
+                name="frm2txtPlain"
+                class="form-control"
+                placeholder="Plain Text"
+              >
+<%= newplaintext %></textarea
+              >
+              <br />
+              <center>
+                <button
+                  id="txtbinarycopy"
+                  type="button"
+                  onclick="frm2selConvertedtext()"
+                  class="btn btn-dark"
+                >
+                  Copy
+                </button>
+              </center>
+              <select class="form-control" id="charsel" hidden="true">
+                <option value="">ASCII</option>
+                <option value="utf-8" selected="">ASCII/UTF-8</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+  </body>
 </html>
