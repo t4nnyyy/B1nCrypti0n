@@ -11,15 +11,13 @@ app.set("view engine", "ejs");
 //routes
 app.get("/", urlencodedParser, (req, res) => {
   var convertit = req.body.frm1txtConverted;
-  var againPlainText;
-
   var newconvertit = req.body.frm2txtConverted;
   var newplaintext;
+  var plaintext;
 
   res.render("index", {
     convertit: convertit,
-    againPlain: againPlainText,
-    plaintext: againPlainText,
+    plaintext: plaintext,
 
     newconvertit: newconvertit,
     newplaintext: newplaintext,
@@ -27,25 +25,39 @@ app.get("/", urlencodedParser, (req, res) => {
 });
 
 app.post("/Encrypt", urlencodedParser, function (req, res) {
-  var plaintxt = req.body.frm1txtPlain;
+  var plaintext = req.body.frm1txtPlain;
   var newconvertit = req.body.frm2txtConverted;
   var newplaintext;
 
-  var arr = new Array(bin.binary(plaintxt));
+ // var arr = new Array(bin.binary(plaintxt));
 
-  for (var i = 0; i < arr.length; i++) {
-    var io = arr[i];
+  //for (var i = 0; i < arr.length; i++) {
+    //var io = arr[i];
     //console.log(io + " ");
-  }
+  //}
 
-  var tmp = bin.binary(plaintxt).split("");
+  //var tmp = bin.binary(plaintxt).split("");
   //console.log(tmp);
+
+
+    var output = [];
+    var input = plaintext.split("");
+    for (var i = 0; i < input.length; i++) {
+      var bin = plaintext[i].charCodeAt().toString(2);
+      output.push(Array(8-bin.length+1).join("0") + bin);
+    }
+  
+
+    tmp = output.join(" ");
+
+    newText = tmp.replace(/ /g, "");
+   // console.log(newText);
+   
 
   var emparr = new Array();
 
-  for (i = 0; i < tmp.length; i++) {
-    var tmp2 = tmp[i];
-    if (tmp2 == 0) {
+  for (i = 0; i < newText.length; i++) {
+    if (newText[i] == 0) {
       emparr.push("b0nod");
     } else {
       emparr.push("b1nod");
@@ -70,13 +82,12 @@ app.post("/Encrypt", urlencodedParser, function (req, res) {
   }
 
   var finaldata = emparr2.join(" ");
-  againPlainText = bin.text(finaldata);
+  //againPlainText = bin.text(finaldata);
   //console.log(againPlainText);
 
   res.render("index", {
     convertit: convertit,
-    againPlain: againPlainText,
-    plaintext: againPlainText,
+    plaintext: plaintext,
 
     newconvertit: newconvertit,
     newplaintext: newplaintext,
@@ -87,7 +98,7 @@ app.post("/Decrypt", urlencodedParser, function (req, res) {
   var convertit = req.body.frm1txtConverted;
   var newconvertit = req.body.frm2txtConverted;
   var newplaintext;
-  var againPlainText;
+  var plaintext;
 
   var newarr = newconvertit;
 
@@ -120,8 +131,7 @@ app.post("/Decrypt", urlencodedParser, function (req, res) {
 
   res.render("index", {
     convertit: convertit,
-    againPlain: againPlainText,
-    plaintext: againPlainText,
+    plaintext: plaintext,
 
     newconvertit: newconvertit,
     newplaintext: newplaintext,
